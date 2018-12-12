@@ -161,16 +161,24 @@ PlayState.preload = function () {
 
     this.game.load.image('background', 'images/background.png');
     this.game.load.image('ground', 'images/ground.png');
+    this.game.load.image('ground2', 'images/ground2.png');
     this.game.load.image('grass:8x1', 'images/grass_8x1.png');
     this.game.load.image('grass:6x1', 'images/grass_6x1.png');
     this.game.load.image('grass:4x1', 'images/grass_4x1.png');
     this.game.load.image('grass:2x1', 'images/grass_2x1.png');
     this.game.load.image('grass:1x1', 'images/grass_1x1.png');
+    this.game.load.image('grass2:8x1', 'images/grass2_8x1.png');
+    this.game.load.image('grass2:6x1', 'images/grass2_6x1.png');
+    this.game.load.image('grass2:4x1', 'images/grass2_4x1.png');
+    this.game.load.image('grass2:2x1', 'images/grass2_2x1.png');
+    this.game.load.image('grass2:1x1', 'images/grass2_1x1.png');
     this.game.load.image('invisible-wall', 'images/invisible_wall.png');
     this.game.load.image('icon:coin', 'images/coin_icon.png');
+    this.game.load.image('icon:coin2', 'images/coin2_icon.png');
     
 
     this.game.load.spritesheet('coin', 'images/coin_animated.png', 32, 25);
+    this.game.load.spritesheet('coin2', 'images/coin2_animated.png', 18, 29);
     this.game.load.spritesheet('spider', 'images/spider.png', 30, 54);
     this.game.load.spritesheet('hero', 'images/hero.png', 30, 54);
     this.game.load.spritesheet('door', 'images/door.png', 56, 52);
@@ -297,8 +305,8 @@ PlayState._spawnCharacters = function (data) {
     this.game.add.existing(this.hero);
 };
 
-PlayState._spawnCoin = function (coin) {
-    let sprite = this.coins.create(coin.x, coin.y, 'coin');
+PlayState._spawnCoin = function (coin, coin2) {
+    let sprite = this.coins.create(coin.x, coin.y, 'coin', 'coin2');
     sprite.anchor.set(0.5, 0.5);
 
     this.game.physics.enable(sprite);
