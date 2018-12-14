@@ -170,6 +170,7 @@ PlayState.preload = function () {
     this.game.load.image('grass2:8x1', 'images/grass2_8x1.png');
     this.game.load.image('grass2:6x1', 'images/grass2_6x1.png');
     this.game.load.image('grass2:4x1', 'images/grass2_4x1.png');
+    this.game.load.image('grass2:1x4', 'images/grass2_1x4.png');
     this.game.load.image('grass2:2x1', 'images/grass2_2x1.png');
     this.game.load.image('grass2:1x1', 'images/grass2_1x1.png');
     this.game.load.image('invisible-wall', 'images/invisible_wall.png');
@@ -442,7 +443,11 @@ ScoreBoard.prototype._getDrawBoxes = function() {
     }) || [];
 };
 
-
+/**
+ * Redraw cells with new data
+ * @param {array||string} dataArr data for cell
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.redraw = function(dataArr) {
     if (!Array.isArray(dataArr) || Array.isArray(dataArr) && dataArr.length === 0) {
         return
@@ -473,7 +478,11 @@ ScoreBoard.prototype.redraw = function(dataArr) {
     }
 };
 
-
+/**
+ * Draw to cell
+ * @param {array||string} dataArr data for cell
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.draw = function(dataArr) {
     dataArr = (!Array.isArray(dataArr) && typeof dataArr === "string") ? [dataArr] : dataArr;
     for (var i = 0; i < dataArr.length; i++) {
@@ -482,7 +491,10 @@ ScoreBoard.prototype.draw = function(dataArr) {
     this.show();
 };
 
-
+/**
+ * Clear cells
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.clear = function() {
     var el;
     var i = this.group.children.length;
@@ -496,19 +508,28 @@ ScoreBoard.prototype.clear = function() {
     this.hide();
 };
 
-
+/**
+ * Increase offset between margins
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.__addOffset = function() {
     this._offset.x += this.conf.margin.x;
     this._offset.y += this.conf.margin.y;
 };
 
-
+/**
+ * Decreate offset between margins
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.__removeOffset = function() {
     this._offset.x -= this.conf.margin.x;
     this._offset.y -= this.conf.margin.y;
 };
 
-
+/**
+ * Draw header label and attach to board
+ * @returns {undefined}
+ */
 ScoreBoard.prototype._drawLabel = function() {
     var text = this.game.add.text(this.conf.x + this._offset.x + this.conf.width / 2, this.conf.y + this._offset.y, this.conf.label);
     text.stroke = '#000000';
@@ -522,7 +543,10 @@ ScoreBoard.prototype._drawLabel = function() {
     this.group.add(text);
 };
 
-
+/**
+ * Draw box and attach to board
+ * @returns {undefined}
+ */
 ScoreBoard.prototype._drawBox = function(stroke) {
     var gridSize = 2;
     var boxGr = this.game.add.group();
@@ -560,28 +584,46 @@ ScoreBoard.prototype._drawBox = function(stroke) {
     this.__addOffset();
 };
 
-
+/**
+ * Set position of current board
+ * @param {number} x Coordinate on x axe
+ * @param {number} y Coordinate on y axe
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.setPosition = function(x, y) {
     this.group.x = x;
     this.group.y = y;
 };
 
-
+/**
+ * Fix board to camera
+ * @param {boolean} fixedToCamera Need to fix to camera or not
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.setFixedToCamera = function(fixedToCamera) {
     this.group.fixedToCamera = fixedToCamera;
 };
 
-
+/**
+ * Show display of current board
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.show = function() {
     this.group.visible = true;
 };
 
-
+/**
+ * Hide display of current board
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.hide = function() {
     this.group.visible = false;
 };
 
-
+/**
+ * Destroy current board on canvas
+ * @returns {undefined}
+ */
 ScoreBoard.prototype.destroy = function() {
     this.group.destroy();
 };
