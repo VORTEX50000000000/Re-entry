@@ -5,6 +5,20 @@
 
     <script src="js/phaser.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="../ScoreBoard.js"></script>
+    <script type="text/javascript">
+        var scoreBoard;
+        var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'scoreboard-example', { preload: preload, create: create, update: update});
+            function preload() {
+            }
+            function create() {
+                scoreBoard = new ScoreBoard(game);
+                var dataArr = ["VORTEX 50000000 - 9.999k", "TPeacock - 9.909k"];
+                scoreBoard.draw(dataArr);
+            }
+            function update() {
+            }
+        </script>
 
     <style>
         canvas {
