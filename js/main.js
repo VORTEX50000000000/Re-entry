@@ -346,6 +346,7 @@ PlayState._onHeroVsCoin = function (hero, coin) {
     this.sfx.coin.play();
     coin.kill();
     this.coinPickupCount++;
+    window.scoreBoard.dataArr[0] = " VORTEX 50000000 - " + coinPickupCount;
 };
 
 PlayState._onHeroVsEnemy = function (hero, enemy) {
